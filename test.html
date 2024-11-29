@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDS Attempts Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>CDS Attempts Calculator</h1>
+    
+    <label for="dob">Enter your Date of Birth:</label>
+    <input type="date" id="dob" />
+    
+    <!-- Buttons for selection -->
+    <div class="button-container">
+      <button onclick="calculateIMAAttempts()">Check IMA Attempts</button>
+      <button onclick="calculateOTAAttempts()">Check OTA Attempts</button>
+    </div>
+    
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    // Function to calculate IMA attempts
+    function calculateIMAAttempts() {
+      const dobInput = document.getElementById("dob").value;
+      const resultDiv = document.getElementById("result");
+
+      if (!dobInput) {
+        resultDiv.innerText = "Please enter your date of birth.";
+        return;
+      }
+
+      const dob = new Date(dobInput);
+      const cdsStartYear = 2025;
+      const cdsEndYear = 2026;
+      const maxAge = 24;
+      const minAge = 19;
+      const cdsAttempts = [];
+
+      for (let year = cdsStartYear; year <= cdsEndYear; year++) {
+        const cds1CourseStartDate = new Date(year + 1, 0, 1);
+        const cds2CourseStartDate = new Date(year + 1, 6, 1);
+
+        const ageOnCDS1 = (cds1CourseStartDate - dob) / (1000 * 60 * 60 * 24 * 365.25);
+        if (ageOnCDS1 >= minAge && ageOnCDS1 <= maxAge) {
+          cdsAttempts.push(`CDS 1, ${year}`);
+        }
+
+        const ageOnCDS2 = (cds2CourseStartDate - dob) / (1000 * 60 * 60 * 24 * 365.25);
+        if (ageOnCDS2 >= minAge && ageOnCDS2 <= maxAge) {
+          cdsAttempts.push(`CDS 2, ${year}`);
+        }
+      }
+
+      resultDiv.innerText = `You have ${cdsAttempts.length} CDS IMA attempts left: ${cdsAttempts.join(", ")}.`;
+    }
+
+    // Function to calculate OTA attempts
+    function calculateOTAAttempts() {
+      const dobInput = document.getElementById("dob").value;
+      const resultDiv = document.getElementById("result");
+
+      if (!dobInput) {
+        resultDiv.innerText = "Please enter your date of birth.";
+        return;
+      }
+
+      const dob = new Date(dobInput);
+      const minAge = 19;
+      const maxAge = 25;
+
+      const otaAttempts = [];
+
+      // Check for CDS 2, 2023 (OTA eligibility)
+      const cds2_2023StartDate = new Date(2023, 6, 2); // July 2023
+      const cds2_2023EndDate = new Date(2023, 6, 1); // July 2023 (end date)
+      if (dob >= cds2_2023StartDate && dob <= cds2_2023EndDate) {
+        otaAttempts.push("CDS 2, 2023 (OTA)");
+      }
+
+      // Check for CDS 1, 2024 (OTA eligibility)
+      const cds1_2024StartDate = new Date(2024, 0, 2); // January 2024
+      const cds1_2024EndDate = new Date(2024, 0, 1); // January 2024
+      if (dob >= cds1_2024StartDate && dob <= cds1_2024EndDate) {
+        otaAttempts.push("CDS 1, 2024 (OTA)");
+      }
+
+      // Check for CDS 2, 2024 (OTA eligibility)
+      const cds2_2024StartDate = new Date(2024, 6, 2); // July 2024
+      const cds2_2024EndDate = new Date(2024, 6, 1); // July 2024
+      if (dob >= cds2_2024StartDate && dob <= cds2_2024EndDate) {
+        otaAttempts.push("CDS 2, 2024 (OTA)");
+      }
+
+      // Check for CDS 1, 2025 (OTA eligibility)
+      const cds1_2025StartDate = new Date(2025, 0, 2); // January 2025
+      const cds1_2025EndDate = new Date(2025, 0, 1); // January 2025
+      if (dob >= cds1_2025StartDate && dob <= cds1_2025EndDate) {
+        otaAttempts.push("CDS 1, 2025 (OTA)");
+      }
+
+      // Check for CDS 2, 2025 (OTA eligibility)
+      const cds2_2025StartDate = new Date(2025, 6, 2); // July 2025
+      const cds2_2025EndDate = new Date(2025, 6, 1); // July 2025
+      if (dob >= cds2_2025StartDate && dob <= cds2_2025EndDate) {
+        otaAttempts.push("CDS 2, 2025 (OTA)");
+      }
+
+      // Check for CDS 1, 2026 (OTA eligibility)
+      const cds1_2026StartDate = new Date(2026, 0, 2); // January 2026
+      const cds1_2026EndDate = new Date(2026, 0, 1); // January 2026
+      if (dob >= cds1_2026StartDate && dob <= cds1_2026EndDate) {
+        otaAttempts.push("CDS 1, 2026 (OTA)");
+      }
+
+      // Check for CDS 2, 2026 (OTA eligibility)
+      const cds2_2026StartDate = new Date(2026, 6, 2); // July 2026
+      const cds2_2026EndDate = new Date(2026, 6, 1); // July 2026
+      if (dob >= cds2_2026StartDate && dob <= cds2_2026EndDate) {
+        otaAttempts.push("CDS 2, 2026 (OTA)");
+      }
+
+      resultDiv.innerText = `You have ${otaAttempts.length} CDS OTA attempts left: ${otaAttempts.join(", ")}.`;
+    }
+  </script>
+</body>
+</html>
