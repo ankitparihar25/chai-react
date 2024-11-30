@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import React  from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 
@@ -10,8 +10,8 @@ function MyApp()
     </div>
   )
 }
-//THINGS IN MY APP AT THE END OF DAY CONVERTED INTO reactElement  so this should also be run right 
-const reactElement = {
+//THINGS IN MYAPP AT THE END OF DAY CONVERTED INTO reactElement  so this should also be run right 
+const ReactElement = {
   type: 'a',
   props: {
     href: 'https://google.com',
@@ -19,9 +19,20 @@ const reactElement = {
   },
   children: 'Click me to visit Google',
 };
+ const newElement=React.createElement(
+  'a',
+  {href:'https://google.com',target:'_blank'},
+  'click me to visit google'
+ )
 
+const anotherElement=(
+  <a href="https://google.com" target='_blank'>visit google</a>
+)
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <MyApp />
-  </StrictMode>,
+  
+    
+    
+    
+    newElement
+ 
 )
