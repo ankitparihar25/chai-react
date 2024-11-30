@@ -5,10 +5,12 @@ import viteLogo from '/vite.svg'
 
 function App() {
 
-  
-  let counter=5
+  let[counter,setCounter]=useState(69) //counter is varibale of any name like ankit and setcounter is function can be of any name
+
+  //let counter=5
   const addValue=()=>{
-counter+=1;
+//counter+=1;
+setCounter(counter+1)
   }
 
   return (
