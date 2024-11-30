@@ -33,6 +33,6 @@ createRoot(document.getElementById('root')).render(
     
     
     
-    newElement
+    <App/>
  
 )
